@@ -9,7 +9,7 @@ all needed files to install and run macOS on Lenovo IdeaPad Y530!
 ONLY TESTED WITH HIGH SIERRA! 10.14+ DOES NOT WORK!
 And friendly advice! Upgrade CPU to C2Q Q9000, add as much RAM as possible and use SATA SSD to not suffer! :D
 
-<a href=https://zapodaj.net/772bb427714be.png.html></a>
+<img src="https://zapodaj.net/images/772bb427714be.png">
 
 https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.7
 
