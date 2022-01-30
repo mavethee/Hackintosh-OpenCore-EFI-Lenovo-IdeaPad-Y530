@@ -7,6 +7,9 @@ EFI premade of OpenCore bootloader for Lenovo IdeaPad Y530 is here!
 Repository contains full ,,Plug-and-Play" EFI of OpenCore bootloader and
 all needed files to install and run macOS on Lenovo IdeaPad Y530!
 ONLY TESTED WITH HIGH SIERRA! 10.14+ DOES NOT WORK!
+And friendly advice! Upgrade CPU to C2Q Q9000, add as much RAM as possible and use SATA SSD to not suffer! :D
+
+<img src="https://zapodaj.net/772bb427714be.png.html" width="1280" height="800"/>
 
 https://github.com/acidanthera/OpenCorePkg/releases/tag/0.7.7
 
@@ -16,18 +19,38 @@ Since OC 0.6.5, I decided to switch to RELEASE version, if you expierience any i
 https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html
 
 IMPORTANT THIS IS LEGACY SYSTEM! I'VE INCLUDED MY boot FILE BUT YOU MIGHT NEED TO CREATE YOUR OWN (for both USB and EFI inside HDD/SSD later on):
-Using Windows: https://dortania.github.io/OpenCore-Install-Guide/installer-guide/winblows-install.html#diskpart-method
-Using macOS: https://dortania.github.io/OpenCore-Install-Guide/installer-guide/mac-install.html#legacy-setup
+
+Using Windows: 
+https://dortania.github.io/OpenCore-Install-Guide/installer-guide/winblows-install.html#diskpart-method
+
+Using macOS: 
+https://dortania.github.io/OpenCore-Install-Guide/installer-guide/mac-install.html#legacy-setup
 
 
 I've used Nvidia GeForce 9600M GS in IdeaPad Y530 with Core2 Duo T6500 CPU, so it might not really work for you, if it isn't, just follow this:
+
 https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/
 
 9600M GS ROM (use latest Lenovo one):
+
 https://www.techpowerup.com/vgabios/?architecture=NVIDIA&manufacturer=&model=9600M+GS&interface=&memType=&memSize=&since=
 
 To make my Intel WiFi card working I've used j137 for SecureBootModel, if you have issues like throwing back to boot picker, please follow this troubleshooting in Recovery:
+
 https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureboot.html#special-notes-with-securebootmodel
+
+### Whats working?
+- Apple Secure Boot (j137)
+- Intel WiFi card
+- Broadcom Ethernet card
+- iServices (check SMBIOS tab)
+- USB ports
+- CD/DVD tray
+
+### Whats not working?
+- Audio (tried every ALCID for ALC888, no luck)
+- SD Card slots, thats pretty much expected
+- Fans monitoring
 
 ### SMBIOS:
 Present in repo SMBIOS is not purchased Apple's device but for own sake, I don't advice you to use it.
