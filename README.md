@@ -3,7 +3,7 @@
 ## Hackintosh-OpenCore-Lenovo-IdeaPad-Y530
 EFI premade of OpenCore bootloader for Lenovo IdeaPad Y530 is here!
 
-## Current version - OpenCore 0.7.8
+## Current version - OpenCore 0.8.2 DEBUG
 Repository contains full ,,Plug-and-Play" EFI of OpenCore bootloader and
 all needed files to install and run macOS on Lenovo IdeaPad Y530!
 
@@ -38,15 +38,17 @@ https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureb
 
 ### Monterey note:
 
+See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-Patcher/issues/108#issuecomment-810634088
+
 !To resolve most Tesla issues in latest macOS related to lack of acceleration and Metal, after patching you also make sure to:
 
-* Set NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config set to "030A0000"
+* Set NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config set to "02080000"
 
 * Disable AMFI (NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args -> Add "amfi_get_out_of_my_way=1")
 
 * From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
 
-* Run OpenCore Legacy Patcher, GUI prefered if you don't sure what you're doing for baby steps (especially version 0.4.3+ is advised since it fixes a lot of issues with Tesla)
+* Run OpenCore Legacy Patcher (0.4.5+ reccomended due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
 
 ### Whats working?
 - Apple Secure Boot (j137) (High Sierra only, in Monterey better to have it disabled because of Non Metal GPU Acceleration patches)
