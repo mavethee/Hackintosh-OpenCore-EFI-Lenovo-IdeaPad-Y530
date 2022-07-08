@@ -14,9 +14,6 @@ And friendly advice! Upgrade CPU to something like T9800, add as much RAM as pos
 <img src="https://preview.redd.it/8y88s387qlj81.png?width=1280&format=png&auto=webp&s=7d40c3a5b686a2173fd3e9843798aef74f4cac38">
 
 ### General note:
-Since OC 0.6.5, I decided to switch to RELEASE version, if you expierience any issues, switch to debug using Dortania's Guide or OCAT linked below in SMBIOS section:
-
-https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html
 
 IMPORTANT THIS IS LEGACY SYSTEM! I'VE INCLUDED MY boot FILE BUT YOU MIGHT NEED TO CREATE YOUR OWN (for both USB and EFI inside HDD/SSD later on):
 
