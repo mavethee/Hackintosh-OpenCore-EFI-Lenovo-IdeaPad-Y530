@@ -42,9 +42,11 @@ See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-
 
 !To resolve most Tesla issues in latest macOS related to lack of acceleration and Metal, after patching you also make sure to:
 
-* Set NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config set to "02080000"
+* Set custom SIP to 0x802 (NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config set to "02080000")
 
 * Disable AMFI (NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args -> Add "amfi_get_out_of_my_way=1")
+
+* For macOS 12.3+, Apple broke something when AMFI is disabled and SIP is off or custom, just add this "ipc_control_port_options=0" to boot-args.
 
 * From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
 
