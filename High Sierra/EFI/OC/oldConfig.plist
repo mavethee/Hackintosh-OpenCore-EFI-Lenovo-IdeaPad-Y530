@@ -1080,9 +1080,9 @@
             <key>Debug</key>
             <dict>
                 <key>AppleDebug</key>
-                <false/>
+                <true/>
                 <key>ApplePanic</key>
-                <false/>
+                <true/>
                 <key>DisableWatchDog</key>
                 <true/>
                 <key>DisplayDelay</key>
@@ -1094,7 +1094,7 @@
                 <key>SysReport</key>
                 <false/>
                 <key>Target</key>
-                <integer>0</integer>
+                <integer>67</integer>
             </dict>
             <key>Entries</key>
             <array>
@@ -1179,7 +1179,7 @@
                     <key>SystemAudioVolumeDB</key>
                     <data>4g==</data>
                     <key>boot-args</key>
-                    <string>keepsyms=1 debug=0x100 alcid=0x100302</string>
+                    <string>-v keepsyms=1 debug=0x100 alcid=0x100302</string>
                     <key>csr-active-config</key>
                     <data>AAAAAA==</data>
                     <key>run-efi-updater</key>

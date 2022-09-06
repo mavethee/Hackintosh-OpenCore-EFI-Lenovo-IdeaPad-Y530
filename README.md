@@ -3,10 +3,11 @@
 ## Hackintosh-OpenCore-Lenovo-IdeaPad-Y530
 EFI premade of OpenCore bootloader for Lenovo IdeaPad Y530 is here!
 
-## Current version - OpenCore 0.8.2 DEBUG
+## Current version - OpenCore 0.8.4 DEBUG
 Repository contains full ,,Plug-and-Play" EFI of OpenCore bootloader and
 all needed files to install and run macOS on Lenovo IdeaPad Y530!
 
+https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.4
 
 And friendly advice! Upgrade CPU to something like T9800, add as much RAM as possible and use SATA SSD to not suffer! :D
 
