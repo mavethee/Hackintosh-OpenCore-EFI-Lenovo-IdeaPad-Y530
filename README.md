@@ -3,11 +3,13 @@
 ## Hackintosh-OpenCore-Lenovo-IdeaPad-Y530
 EFI premade of OpenCore bootloader for Lenovo IdeaPad Y530 is here!
 
-## Current version - OpenCore 0.8.4 DEBUG
+## Current version - OpenCore 0.8.5 DEBUG
 Repository contains full ,,Plug-and-Play" EFI of OpenCore bootloader and
 all needed files to install and run macOS on Lenovo IdeaPad Y530!
 
-https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.4
+!NON-METAL dGPU! Do not install Ventura yet!
+
+https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.5
 
 And friendly advice! Upgrade CPU to something like T9800, add as much RAM as possible and use SATA SSD to not suffer! :D
 
@@ -51,7 +53,7 @@ See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-
 
 * From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
 
-* Run OpenCore Legacy Patcher (0.4.5+ reccomended due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
+* Run OpenCore Legacy Patcher 0.5.1 (If for some reason, you wanna run older versions, 0.4.5+ is reccomended minimum due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
 
 ### Whats working?
 - Apple Secure Boot (j137) (High Sierra only, in Monterey better to have it disabled because of Non Metal GPU Acceleration patches)
