@@ -3,11 +3,9 @@
 ## Hackintosh-OpenCore-Lenovo-IdeaPad-Y530
 EFI premade of OpenCore bootloader for Lenovo IdeaPad Y530 is here!
 
-## Current version - OpenCore 0.8.5 DEBUG
+## Current version - OpenCore 0.8.6 DEBUG
 Repository contains full ,,Plug-and-Play" EFI of OpenCore bootloader and
 all needed files to install and run macOS on Lenovo IdeaPad Y530!
-
-!NON-METAL dGPU! Do not install Ventura yet!
 
 https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.6
 
@@ -18,26 +16,48 @@ And friendly advice! Upgrade CPU to something like T9800, add as much RAM as pos
 
 ### General note:
 
-IMPORTANT THIS IS LEGACY SYSTEM! I'VE INCLUDED MY boot FILE BUT YOU MIGHT NEED TO CREATE YOUR OWN (for both USB and EFI inside HDD/SSD later on):
+1. IMPORTANT THIS IS LEGACY SYSTEM! YOU NEED TO CREATE YOUR OWN (for both USB and EFI inside HDD/SSD later on):
 
-Using Windows: 
-https://dortania.github.io/OpenCore-Install-Guide/installer-guide/winblows-install.html#diskpart-method
+* Using Windows:
 
-Using macOS: 
-https://dortania.github.io/OpenCore-Install-Guide/installer-guide/mac-install.html#legacy-setup
+    https://dortania.github.io/OpenCore-Install-Guide/installer-guide/winblows-install.html#diskpart-method
+
+2. Using macOS:
+
+    https://dortania.github.io/OpenCore-Install-Guide/installer-guide/mac-install.html#legacy-setup
 
 
-I've used Nvidia GeForce 9600M GS in IdeaPad Y530 with Core2 Duo T6500 CPU, so it might not really work for you, if it isn't, just follow this (!DO IT BEFORE INSTALLING MACOS!):
+3. I've used Nvidia GeForce 9600M GS in IdeaPad Y530 with Core2 Duo T6500 CPU, so it might not really work for you, if it isn't, just follow this (!DO IT BEFORE INSTALLING MACOS!):
 
-https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/
+    - Legacy Nvidia Patching Guide:
+        
+        https://dortania.github.io/OpenCore-Post-Install/gpu-patching/nvidia-patching/
 
-9600M GS ROM (use latest Lenovo one):
+    - 9600M GS ROM (use latest Lenovo one):
 
-https://www.techpowerup.com/vgabios/?architecture=NVIDIA&manufacturer=&model=9600M+GS&interface=&memType=&memSize=&since=
+        https://www.techpowerup.com/vgabios/?architecture=NVIDIA&manufacturer=&model=9600M+GS&interface=&memType=&memSize=&since=
 
-HIGH SIERRA NOTE: To make my Intel WiFi card working I've used j137 for SecureBootModel, if you have issues like throwing back to boot picker, please follow this troubleshooting in Recovery:
+### SMBIOS:
+Present in repo SMBIOS is not purchased Apple's device but for own sake, I don't advice you to use it.
+...for own sake ;)
 
-https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureboot.html#special-notes-with-securebootmodel
+To generate SMBIOS you can use:
+
+* GenSMBIOS:
+
+    https://github.com/corpnewt/GenSMBIOS
+
+* OpenCore Auxiliary Tools:
+
+    https://github.com/ic005k/QtOpenCoreConfig
+
+Tool doesn't matter really, you just need not valid or unused SMBIOS to copy-paste needed info.
+...if you wish to use iServices of course :)
+
+### High Sierra note: 
+* To make my Intel WiFi card working I've used j137 for SecureBootModel, if you have issues like throwing back to boot picker, please follow this troubleshooting in Recovery:
+    
+    https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureboot.html#special-notes-with-securebootmodel
 
 ### Monterey note:
 
@@ -45,15 +65,58 @@ See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-
 
 !To resolve most Tesla issues in latest macOS related to lack of acceleration and Metal, after patching you also make sure to:
 
-* Set custom SIP to 0x802 (NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config set to "02080000")
+1. Disable Apple Secure Boot, which requires:
+- Allow loading unsigned DMGs (`Misc -> Security -> DmgLoading -> Any`)
+- Disable Apple Secure Boot (`Misc -> Security -> SecureBootModel -> Disabled`)
 
-* Disable AMFI (NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args -> Add "amfi_get_out_of_my_way=1")
+2. Set custom SIP to 0x802 (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config` set to `02080000`)
 
-* For macOS 12.3+, Apple broke something when AMFI is disabled and SIP is off or custom, just add this "ipc_control_port_options=0" to boot-args.
+3. Disable AMFI: 
+    - Fully disable AMFI (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args -> amfi=0x80`)
+    - For macOS 12.3+, Apple broke something when AMFI is disabled and SIP is off or custom, just add this `ipc_control_port_options=0` to boot-args after AMFI boot-arg.
 
-* From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
+4. For macOS 12.4+, you also need a NoAVXFSCompressionTypeZlib kext to downgraade APFS compression Type Zlib to not require AVX1.0 just as it was in 12.3.1!
 
-* Run OpenCore Legacy Patcher 0.5.1 (If for some reason, you wanna run older versions, 0.4.5+ is reccomended minimum due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
+5. From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
+
+6. Run OpenCore Legacy Patcher 0.5.2 (If for some reason, you wanna run older versions, 0.4.5+ is reccomended minimum due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
+
+### Ventura note:
+As of current state of Non-Metal dGPUs it's not reccomended to try Ventura but in case you're eager, well be prepared to suffer tons of issues and unaccelerated OS:
+
+!CLEAN INSTALL IS HIGHLY RECCOMENDED!
+
+1. Change SMBIOS to Ventura supported one (See SMBIOS section, I reccommend `MacBookPro14,3`)
+
+2. Disable Apple Secure Boot, which requires:
+- Allow loading unsigned DMGs (`Misc -> Security -> DmgLoading -> Any`)
+- Disable Apple Secure Boot (`Misc -> Security -> SecureBootModel -> Disabled`)
+
+3. Set custom SIP to 0x803 (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config` set to `03080000`)
+
+4. Disable AMFI: 
+    - Fully disable AMFI (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args -> amfi=0x80`)
+    - For macOS 12.3+, Apple broke something when AMFI is disabled and SIP is off or custom, just add this `ipc_control_port_options=0` to boot-args after AMFI boot-arg.
+
+5. For 12.4+ Zlib compression fix, we need to add to the combo `NoAVXFSCompressionTypeZlib-AVXpel` kext, to resolve Zlib-based instability in Ventura on pre-Sandy Bridge.
+
+    https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/payloads/Kexts/Misc/NoAVXFSCompressionTypeZlib-AVXpel-v12.6.zip
+
+6. Since 13.0, Apple requires AVX2 to even be able to boot, we need to use `CryptexFixup` kext to use Rosetta 2 dyids which lacks of AVX2 as well.
+
+    https://github.com/acidanthera/CryptexFixup/
+
+7. Replace Intel WiFi kext to 2.2.0 which is in ALPHA still but reuired for Ventura!
+
+    https://github.com/OpenIntelWireless/itlwm/releases/tag/v2.2.0-alpha
+
+
+8. From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
+
+!YOU WON'T GET GPU ACCELERATION WORKING, SYSTEM WILL BE SLOW! YOU CAN TRY FOR FUN BUT IT'S NOT FOR ACTUAL USE!
+
+You are on your own with this one!
+
 
 ### Whats working?
 - Apple Secure Boot (j137) (High Sierra only, in Monterey better to have it disabled because of Non Metal GPU Acceleration patches)
@@ -68,33 +131,21 @@ See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-
 - SD Card slots, thats pretty much expected
 - Fans monitoring
 - Trackpad acts weirdly? I've just used USB mouse :P
-
-### SMBIOS:
-Present in repo SMBIOS is not purchased Apple's device but for own sake, I don't advice you to use it.
-...for own sake ;)
-
-To generate SMBIOS you can use:
-* GenSMBIOS:
-https://github.com/corpnewt/GenSMBIOS
-* OpenCore Auxiliary Tools:
-https://github.com/ic005k/QtOpenCoreConfig
-
-Tool doesn't matter really, you just need not valid or unused SMBIOS to copy-paste needed info.
-...if you wish to use iServices of course :)
+- NVRAM, will take a look at it finally but it will eventually take time.
 
 ## Credits:
 ### Airportitlwm:
 https://github.com/OpenIntelWireless/itlwm
+### AutoPkgInstaller:
+https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/payloads/Kexts/Acidanthera/AutoPkgInstaller-v1.0.1-DEBUG.zip
 ### AppleALC:
 https://github.com/acidanthera/AppleALC
 ### BCM5722D:
 https://github.com/chris1111/BCM5722D/releases
-### HibernationFixup:
-https://github.com/acidanthera/HibernationFixup
-### IntelBluetoothFirmware:
-https://github.com/OpenIntelWireless/IntelBluetoothFirmware
 ### Lilu:
 https://github.com/acidanthera/Lilu/
+### NoAVXFSCompressionTypeZlib (for 12.4+):
+https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/payloads/Kexts/Misc/NoAVXFSCompressionTypeZlib-v12.3.1.zip
 ### OpenCorePkg:
 https://github.com/acidanthera/OpenCorePkg/
 ### OpenCanopy's resources:
