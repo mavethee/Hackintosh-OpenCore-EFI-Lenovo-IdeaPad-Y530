@@ -3,11 +3,11 @@
 ## Hackintosh-OpenCore-Lenovo-IdeaPad-Y530
 EFI premade of OpenCore bootloader for Lenovo IdeaPad Y530 is here!
 
-## Current version - OpenCore 0.8.7 DEBUG
+## Current version - OpenCore 0.8.9 DEBUG
 Repository contains full ,,Plug-and-Play" EFI of OpenCore bootloader and
 all needed files to install and run macOS on Lenovo IdeaPad Y530!
 
-https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.7
+https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.9
 
 And friendly advice! Upgrade CPU to something like T9800, add as much RAM as possible and use SATA SSD to not suffer! :D
 
@@ -16,7 +16,7 @@ And friendly advice! Upgrade CPU to something like T9800, add as much RAM as pos
 
 ### General note:
 
-1. IMPORTANT THIS IS LEGACY SYSTEM! YOU NEED TO CREATE YOUR OWN (for both USB and EFI inside HDD/SSD later on):
+1. IMPORTANT THIS IS LEGACY SYSTEM! YOU NEED TO CREATE YOUR OWN boot file (for both USB and EFI inside HDD/SSD later on):
 
 * Using Windows:
 
@@ -78,7 +78,9 @@ See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-
 6. Run OpenCore Legacy Patcher 0.5.2 (If for some reason, you wanna run older versions, 0.4.5+ is reccomended minimum due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
 
 ### Ventura note:
-As of current state of Non-Metal dGPUs it's not reccomended to try Ventura but in case you're eager, well be prepared to suffer tons of issues and unaccelerated OS:
+As of OpenCore Legacy Patcher 0.6.0+, non-Metal is here again on Ventura! :D
+
+https://github.com/dortania/OpenCore-Legacy-Patcher/releases/
 
 !CLEAN INSTALL IS HIGHLY RECCOMENDED!
 
@@ -108,8 +110,6 @@ As of current state of Non-Metal dGPUs it's not reccomended to try Ventura but i
 
 
 8. From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
-
-!YOU WON'T GET GPU ACCELERATION WORKING, SYSTEM WILL BE SLOW! YOU CAN TRY FOR FUN BUT IT'S NOT FOR ACTUAL USE!
 
 You are on your own with this one!
 
