@@ -133,15 +133,16 @@ You are on your own with this one!
 ### Airportitlwm:
 https://github.com/OpenIntelWireless/itlwm
 ### AutoPkgInstaller:
-https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/payloads/Kexts/Acidanthera/AutoPkgInstaller-v1.0.1-DEBUG.zip
+https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/payloads/Kexts/Acidanthera/AutoPkgInstaller-v1.0.2-DEBUG.zip
 ### AppleALC:
 https://github.com/acidanthera/AppleALC
 ### BCM5722D:
 https://github.com/chris1111/BCM5722D/releases
 ### Lilu:
 https://github.com/acidanthera/Lilu/
-### NoAVXFSCompressionTypeZlib (for 12.4+):
+### NoAVXFSCompressionTypeZlib (for 12.4+/13+):
 https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/payloads/Kexts/Misc/NoAVXFSCompressionTypeZlib-v12.3.1.zip
+https://github.com/dortania/OpenCore-Legacy-Patcher/blob/main/payloads/Kexts/Misc/NoAVXFSCompressionTypeZlib-AVXpel-v12.6.zip
 ### OpenCorePkg:
 https://github.com/acidanthera/OpenCorePkg/
 ### OpenCanopy's resources:
