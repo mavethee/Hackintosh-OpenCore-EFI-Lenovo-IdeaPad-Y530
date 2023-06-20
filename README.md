@@ -3,11 +3,11 @@
 ## Hackintosh-OpenCore-Lenovo-IdeaPad-Y530
 EFI premade of OpenCore bootloader for Lenovo IdeaPad Y530 is here!
 
-## Current version - OpenCore 0.8.9 DEBUG
+## Current version - OpenCore 0.9.3 DEBUG
 Repository contains full ,,Plug-and-Play" EFI of OpenCore bootloader and
 all needed files to install and run macOS on Lenovo IdeaPad Y530!
 
-https://github.com/acidanthera/OpenCorePkg/releases/tag/0.8.9
+https://github.com/acidanthera/OpenCorePkg/releases/tag/0.9.3
 
 And friendly advice! Upgrade CPU to something like T9800, add as much RAM as possible and use SATA SSD to not suffer! :D
 
@@ -50,32 +50,17 @@ To generate SMBIOS you can use:
 Tool doesn't matter really, you just need not valid or unused SMBIOS to copy-paste needed info.
 ...if you wish to use iServices of course :)
 
-### High Sierra note: 
-* To make my Intel WiFi card working I've used j137 for SecureBootModel, if you have issues like throwing back to boot picker, please follow this troubleshooting in Recovery:
-    
-    https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureboot.html#special-notes-with-securebootmodel
+### Sonoma note:
 
-### Monterey note:
+Soon if possible, hardware isn't the best after all.
+Need to figure out current issues with Monterey and Ventura with Kernel Panics after Root Patching and so oon.
+As it's not supported way of Hackintoshing, we're on your own hah!
 
-See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-Patcher/issues/108#issuecomment-810634088
+Not to mention acceleration, which seems to be a challange for OCLP devs, see here:
 
-!To resolve most Tesla issues in latest macOS related to lack of acceleration and Metal, after patching you also make sure to:
+https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1076
 
-1. Disable Apple Secure Boot, which requires:
-- Allow loading unsigned DMGs (`Misc -> Security -> DmgLoading -> Any`)
-- Disable Apple Secure Boot (`Misc -> Security -> SecureBootModel -> Disabled`)
-
-2. Set custom SIP to 0x802 (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config` set to `02080000`)
-
-3. Disable AMFI: 
-    - Fully disable AMFI (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args -> amfi=0x80`)
-    - For macOS 12.3+, Apple broke something when AMFI is disabled and SIP is off or custom, just add this `ipc_control_port_options=0` to boot-args after AMFI boot-arg.
-
-4. For macOS 12.4+, you also need a NoAVXFSCompressionTypeZlib kext to downgraade APFS compression Type Zlib to not require AVX1.0 just as it was in 12.3.1!
-
-5. From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
-
-6. Run OpenCore Legacy Patcher 0.5.2 (If for some reason, you wanna run older versions, 0.4.5+ is reccomended minimum due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
+Maybe it's time to say Goodbye to some old tech, we will see.
 
 ### Ventura note:
 As of OpenCore Legacy Patcher 0.6.0+, non-Metal is here again on Ventura! :D
@@ -113,6 +98,32 @@ https://github.com/dortania/OpenCore-Legacy-Patcher/releases/
 
 You are on your own with this one!
 
+### Monterey note:
+
+See current issues and workarounds: https://github.com/dortania/OpenCore-Legacy-Patcher/issues/108#issuecomment-810634088
+
+!To resolve most Tesla issues in latest macOS related to lack of acceleration and Metal, after patching you also make sure to:
+
+1. Disable Apple Secure Boot, which requires:
+- Allow loading unsigned DMGs (`Misc -> Security -> DmgLoading -> Any`)
+- Disable Apple Secure Boot (`Misc -> Security -> SecureBootModel -> Disabled`)
+
+2. Set custom SIP to 0x802 (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config` set to `02080000`)
+
+3. Disable AMFI: 
+    - Fully disable AMFI (`NVRAM -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args -> amfi=0x80`)
+    - For macOS 12.3+, Apple broke something when AMFI is disabled and SIP is off or custom, just add this `ipc_control_port_options=0` to boot-args after AMFI boot-arg.
+
+4. For macOS 12.4+, you also need a NoAVXFSCompressionTypeZlib kext to downgraade APFS compression Type Zlib to not require AVX1.0 just as it was in 12.3.1!
+
+5. From macOS recovery after macOS is installed, make sure to navigate to Utilities -> Terminal and run "csrutil disable --no-internal" and "csrutil authenticated-root disable"
+
+6. Run OpenCore Legacy Patcher 0.5.2 (If for some reason, you wanna run older versions, 0.4.5+ is reccomended minimum due to kext for checking for OCLP updates applied and recent Non-Metal fixes, see #108)
+
+### High Sierra note: 
+* To make my Intel WiFi card working I've used j137 for SecureBootModel, if you have issues like throwing back to boot picker, please follow this troubleshooting in Recovery:
+    
+    https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureboot.html#special-notes-with-securebootmodel
 
 ### Whats working?
 - Apple Secure Boot (j137) (High Sierra only, in Monterey better to have it disabled because of Non Metal GPU Acceleration patches)
